@@ -1,14 +1,12 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../action/userAction";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.userLogin);  
-
-
+  const {userInfo} = useSelector((state) => state.userLogin);  
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -25,17 +23,10 @@ const Header = () => {
           </Nav>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Link
-                to="/cart"
-                style={{
+            <NavLink className="ms-auto" to="/cart" style={{
                   color: "#ffffff",
                   textDecoration: "none",
-                  marginTop: "10px",
-                }}
-              >
-                <i className="fas fa-shopping-cart"></i> Cart
-              </Link>
+                }}><i className="fas fa-shopping-cart"></i>Cart              
               {userInfo ? (
                   <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                     <NavDropdown.Item>
@@ -48,20 +39,18 @@ const Header = () => {
                   </NavDropdown>
               ) : (
 
-                  <Link
+                  <NavLink
                     to="/login"
                     style={{
                       color: "#ffffff",
                       textDecoration: "none",
-                      marginLeft: "10px",
-                      marginTop:"10px"
                     }}
                   >
                     <i className="fas fa-user"></i> Sign In
-                  </Link>
+                  </NavLink>
 
               )}
-            </Nav>
+            </NavLink>
           </Navbar.Collapse>
         </Container>
       </Navbar>

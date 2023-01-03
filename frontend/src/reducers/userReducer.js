@@ -14,7 +14,9 @@ import {
   USER_UPDATE_SUCCESS,
 } from '../constants/userConstant';
 
-export const loginReducer = (state = {}, action) => {
+const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+
+export const loginReducer = (state = {userInfo: userInfoFromStorage}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUSET:
       return {loading: true};

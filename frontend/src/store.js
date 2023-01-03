@@ -12,16 +12,18 @@ const reducer  = combineReducers({
     userDetails: userDetailsReducer
 })
 
-const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
-const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
-const initialState = {
-    cart: {cartItems: cartItemsFromStorage},
-    userLogin: {userInfo:userInfoFromStorage}
+// const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+// const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
-}
-console.log(cartItemsFromStorage);
+// const initialState = {
+//     cart: {cartItems: cartItemsFromStorage},
+//     userLogin: {userInfo:userInfoFromStorage}
 
-const store = configureStore({reducer, initialState})
+// }
+
+
+
+const store = configureStore({reducer})
 
 export default store
