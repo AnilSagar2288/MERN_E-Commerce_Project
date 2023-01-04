@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const CartScreen = () => {
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();  
   // const query = new URLSearchParams(useLocation().search)
   // const qty = query.get("qty" || "")
   const query = useLocation().search;
@@ -34,9 +34,8 @@ const removeFromCartHandler = (id) =>{
   dispatch(removeFromCart(id))
 }
 
-const checkoutHandler = () =>{
-  console.log('checkout');
-  navigate('/login?redirect=shipping')
+const checkoutHandler = () =>{  
+  navigate('/login?redirect=/shipping')
 }
 
   return <>
