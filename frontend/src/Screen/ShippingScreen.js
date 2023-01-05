@@ -1,10 +1,10 @@
-
 import React, {useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {useSelector, useDispatch} from "react-redux"
 import { saveShippingAddress } from '../action/cartActions'
 import FormContainer from '../component/FormContainer'
 import {useNavigate} from 'react-router-dom'
+import CheckOutSteps from '../component/CheckOutSteps'
 
 const ShippingScreen = () => {
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const ShippingScreen = () => {
     }
   return (
     <FormContainer>
+        <CheckOutSteps step1 step2 />
         <h1>Shipping Address</h1>
         <Form onSubmit={submitHandler}>
         <Form.Group className='mt-4' controlId='address'>
@@ -40,7 +41,7 @@ const ShippingScreen = () => {
                 <Form.Label>Country</Form.Label>
                 <Form.Control type='text' value={country} required onChange={(e)=> setCountry(e.target.value)} placeholder="Enter Country" />
             </Form.Group>
-            <Button type='submit' variant='primary'>Continue</Button>
+            <Button type='submit' variant='primary' className='mt-4'>Continue</Button>
         </Form>
     </FormContainer>
   )

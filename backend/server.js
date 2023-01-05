@@ -5,6 +5,7 @@ import cors from 'cors'
 import connectDB from './config/db.js'
 import productRoute from './routes/productRoute.js'
 import userRoute from './routes/userRoute.js'
+import orderRoute from './routes/orderRoute.js'
 import bodyParser from 'body-parser'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 const PORT = process.env.PORT || 5000
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/api/products',productRoute)
 app.use('/api/users',userRoute)
+app.use('/api/orders',orderRoute)
 
 
 app.use(notFound)
