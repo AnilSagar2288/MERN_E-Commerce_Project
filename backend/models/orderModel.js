@@ -9,7 +9,11 @@ const orderSchema = new mongoose.Schema({
             name:{type:String, required:true},
             qty:{type:Number, required:true},
             price:{type:Number, required:true},
-            product:{type:mongoose.Types.ObjectId, required:true, ref:'Product'},                                    
+            image: {
+                type: String,
+                required: true,
+              },
+            product:{type:mongoose.Types.ObjectId, required:true, ref:'Product'},                                      
         }
     ],
     shippingAddress:{
@@ -24,15 +28,15 @@ const orderSchema = new mongoose.Schema({
         status:{type:String},
         update_time:{type:String},
         email_address:{type:String},
-
     },
+    itemsPrice:{type:Number, required:false, default:0.0},
     taxPrice:{type:Number, required:true, default:0.0},
     shippingPrice:{type:Number, required:true, default:0.0},
     totalPrice:{type:Number, required:true, default:0.0},
     isPaid:{type:Boolean, required:true, default:false},
-    paidAt:{type:Date},
+    paidAt:{type:Date,default: Date.now() },
     isDelivered:{type:Boolean, required:true, default:false},
-    deliveredAt:{type:Date},
+    deliveredAt:{type:Date,default: Date.now(),},
 },{
     timestamps:true
 })

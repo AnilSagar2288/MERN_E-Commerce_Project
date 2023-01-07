@@ -22,7 +22,7 @@ const ShippingScreen = () => {
     }
   return (
     <FormContainer>
-        <CheckOutSteps step1 step2 />
+        <CheckOutSteps step1 step2 /> 
         <h1>Shipping Address</h1>
         <Form onSubmit={submitHandler}>
         <Form.Group className='mt-4' controlId='address'>

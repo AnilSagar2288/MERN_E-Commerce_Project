@@ -1,10 +1,12 @@
 import React, {useEffect,useState} from 'react'
-import {Form,Button, Row, Col} from 'react-bootstrap'
+import {Form,Button, Row, Col, Table} from 'react-bootstrap'
 import {useSelector, useDispatch} from "react-redux"
 import Message from '../component/Message'
 import Loader  from '../component/Loader'
 import {getUserDetails, updateUserProfile} from '../action/userAction'
 import {useNavigate} from 'react-router-dom'
+import { getMyOrderDetails } from '../action/orderAction'
+import {LinkContainer} from 'react-router-bootstrap'
 
 const ProfileScreen = () => {
     const [name,setName] =useState("")
@@ -17,6 +19,7 @@ const ProfileScreen = () => {
     const {loading,error,user} = useSelector(state=>state.userDetails)
     const {userInfo} = useSelector(state=>state.userLogin)
     const {success} = useSelector(state=>state.userUpdateProfile)
+    const {myOrders,loading: orderLoading, error: orderError} = useSelector(state=>state.myOrders)
 
     const dispatch = useDispatch()
 
@@ -26,6 +29,7 @@ const ProfileScreen = () => {
         }else{
             if(!user.name){
                 dispatch(getUserDetails('profile'))
+                dispatch(getMyOrderDetails())
             }else{
                 setName(user.name)
                 setEmail(user.email)
@@ -72,7 +76,39 @@ const ProfileScreen = () => {
         </Form> 
         </Col>
 
-        <Col md={9}></Col>       
+        <Col md={9}>
+        <h2>My Orders</h2>
+            {orderLoading ? <Loader /> : orderError ? <Message variant='danger'>{orderError}</Message> : (
+                <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERD</th>
+                    <th>CHECK DETAILS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {myOrders.map(item=> (
+                        <tr key={item._id}>
+                            <td>{item._id}</td>
+                            <td>{item.createdAt.substring(0,10)}</td>
+                            <td>{item.totalPrice}</td>
+                            <td>{item.isPaid ? item.paidAt.substring(0,10) : (<i className='fas fa-times' style={{color:"red"}}></i>)}</td>
+                            <td>{item.isDelivered ? item.deliveredAt.substring(0,10) : (<i className='fas fa-times' style={{color:"red"}}></i>)}</td>
+                            <td>
+                                <LinkContainer to={`/order/${item._id}`}>
+                                    <Button variant='light' className='btn-sm'>Details</Button>
+                                </LinkContainer>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+            )}
+        </Col>       
     </Row>
 
 }

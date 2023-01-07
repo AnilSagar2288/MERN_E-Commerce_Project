@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from 'react-router-dom'
-import { createOrder } from '../action/orderAction'
+// import { createOrder } from '../action/orderAction'
+import {addOrder} from '../action/orderAction'
 import CheckOutSteps from '../component/CheckOutSteps'
 import Message from '../component/Message'
 
@@ -11,7 +12,8 @@ const PlaceOrderScreen = () => {
     
     const dispatch = useDispatch()  
     const navigate = useNavigate()
-    const {success, error, order} = useSelector(state=> state.createOrder)
+    const createOrder = useSelector(state=> state.createOrder)
+    const {success, error, order} = createOrder
 
        // Calculate Price
     const addDecimals = (num) =>{        
@@ -25,8 +27,8 @@ const PlaceOrderScreen = () => {
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
 
-    const placeOrderHandler = React.useCallback(() =>{            
-        dispatch(createOrder({
+    const placeOrderHandler = () =>{         
+        dispatch(addOrder({
             orderItems:cart.cartItems,
             shippingAddress:cart.shippingAddress,
             paymentMethod:cart.paymentMethod,
@@ -35,7 +37,7 @@ const PlaceOrderScreen = () => {
             shippingPrice: cart.shippingPrice,
             totalPrice:cart.totalPrice
         }))
-    },[])
+    }
 
     useEffect(()=>{
         if(cart && !cart.paymentMethod){
@@ -64,7 +66,7 @@ const PlaceOrderScreen = () => {
                     <h2>Payment Method</h2>
                     <p>
                         <strong>Method:</strong>
-                        {cart.pamyentMethod}
+                        {cart.paymentMethod}
                     </p>
                 </ListGroup.Item>
                 <ListGroup.Item>
