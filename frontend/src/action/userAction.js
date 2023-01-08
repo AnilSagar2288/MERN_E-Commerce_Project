@@ -20,7 +20,7 @@ import {
     USER_LIST_RESET,
     USER_DELETE_REQUSET,
     USER_DELETE_SUCCESS,
-    USER_DELETE_FAIL
+    USER_DELETE_FAIL,
   } from '../constants/userConstant';
   import {MY_ORDER_LIST_RESET} from '../constants/orderConstant'
   import {toast } from 'react-toastify';
@@ -206,3 +206,6 @@ export const userDeleteAction = (userDeleteId) => async(dispatch,getState)=>{
         })
     }
 }
+
+
+

@@ -1,39 +1,29 @@
-import Header from "./component/Header";
-import Footer from "./component/Footer";
 import { Container } from "react-bootstrap";
-import HomeScreen from "./Screen/HomeScreen";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductScreen from "./Screen/ProductScreen";
+import Footer from "./component/Footer";
+import Header from "./component/Header";
 import CartScreen from "./Screen/CartScreen";
+import HomeScreen from "./Screen/HomeScreen";
 import LoginScreen from "./Screen/LoginScreen";
-import RegisterScreen from "./Screen/RegisterScreen";
-import ProfileScreen from "./Screen/ProfileScreen";
-import ShippingScreen from "./Screen/ShippingScreen";
+import OrderScreen from "./Screen/OrderScreen";
 import PaymentMethodScreen from "./Screen/PaymentMethodScreen";
 import PlaceOrderScreen from "./Screen/PlaceOrderScreen";
-import OrderScreen from "./Screen/OrderScreen";
+import ProductScreen from "./Screen/ProductScreen";
+import ProfileScreen from "./Screen/ProfileScreen";
+import RegisterScreen from "./Screen/RegisterScreen";
+import ShippingScreen from "./Screen/ShippingScreen";
+import UserEditScreen from "./Screen/UserEditScreen";
 import UserListScreen from "./Screen/UserListScreen";
-import { ToastContainer } from 'react-toastify';
+
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <main className="py-3">
-        {/* <ToastContainer 
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        > */}
+      <main className="py-3">        
         <Container>
           <Routes>
+          <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
             <Route path="/admin/userList" element={<UserListScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
@@ -47,7 +37,7 @@ const App = () => {
             <Route path="/cart/:id?" element={<CartScreen />} />
           </Routes>
         </Container>
-        {/* </ToastContainer> */}
+
       </main>
       <Footer />
     </Router>

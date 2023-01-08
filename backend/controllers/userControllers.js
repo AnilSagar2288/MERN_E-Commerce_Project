@@ -137,7 +137,6 @@ const updateUser = asyncHandler(async(req,res)=>{
 
 const getUserById = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.params.id).select('-password')
-    console.log(user)
     if(user){
         res.json(user)
     }else{
