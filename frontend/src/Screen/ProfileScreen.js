@@ -46,7 +46,6 @@ const ProfileScreen = () => {
             dispatch(updateUserProfile({id:user._id,name,email,password}))
         }
     }
-
     
   return <Row>
     <Col md={3}>

@@ -12,14 +12,29 @@ import ShippingScreen from "./Screen/ShippingScreen";
 import PaymentMethodScreen from "./Screen/PaymentMethodScreen";
 import PlaceOrderScreen from "./Screen/PlaceOrderScreen";
 import OrderScreen from "./Screen/OrderScreen";
+import UserListScreen from "./Screen/UserListScreen";
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
     <Router>
       <Header />
       <main className="py-3">
+        {/* <ToastContainer 
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        > */}
         <Container>
           <Routes>
+            <Route path="/admin/userList" element={<UserListScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/shipping" element={<ShippingScreen />} />
@@ -32,6 +47,7 @@ const App = () => {
             <Route path="/cart/:id?" element={<CartScreen />} />
           </Routes>
         </Container>
+        {/* </ToastContainer> */}
       </main>
       <Footer />
     </Router>
