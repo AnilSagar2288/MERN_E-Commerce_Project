@@ -54,14 +54,14 @@ const UserListScreen = () => {
         theme="colored"
         />
       <h2>User Details</h2>      
-      <Table>
+      <Table striped bordered hover responsive className='table-sm'>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>EMAIL</th>
                 <th>ADMIN</th>
-                <th>Edit</th>
+                <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
@@ -76,12 +76,12 @@ const UserListScreen = () => {
                         <td>{user.isAdmin ? <i className='fas fa-check' style={{color:"green"}}></i> : <i className='fas fa-times' style={{color:"red"}}></i>}</td>
                         <td>
                           <Link to={`/admin/user/${user._id}/edit`} as='span'>
-                            <Button variant='light' className='btn-sm'>
+                            <Button variant='success' className='btn-sm'>
                               <i className='fas fa-edit'></i>
                             </Button>
                           </Link>
                           
-                          <Button variant='light' className='btn-sm' onClick={()=>deleteUserHandler(user._id)}>
+                          <Button variant="danger" className='btn-sm'  onClick={()=>deleteUserHandler(user._id)}>
                               <i className='fas fa-trash'></i>
                           </Button>
                         </td>
