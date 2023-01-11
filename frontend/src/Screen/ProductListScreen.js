@@ -4,43 +4,55 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {productDeleteAction, productListAction  } from '../action/productAction'
+import {productDeleteAction, productListAction,productCreateAction } from '../action/productAction'
 import Loader from '../component/Loader'
 import Message from '../component/Message'
+import {PRODUCT_CREATE_RESET} from '../constants/productConstant'
 
 
 
 const ProductListScreen = () => {
   const navigate =useNavigate()
     const dispatch = useDispatch()
-    const {products,error,loading} = useSelector(state=>state.productList)             
+    const {products,error,loading} = useSelector(state=>state.productList)               
     const {success: successDelete, loading: loadingDelete, error: errorDelete} = useSelector(state=>state.deleteProduct) 
-    const {userInfo} = useSelector(state=>state.userLogin) 
+    const {success: successCreate, loading: loadingCreate, error: errorCreate,product: productCreate} = useSelector(state=>state.createProduct) 
+
+    const {userInfo} = useSelector(state=>state.userLogin)  
     
     useEffect(() => {
-      if(userInfo && userInfo.isAdmin){
-        dispatch(productListAction())
-      }else{
+      dispatch({type:PRODUCT_CREATE_RESET })
+      if(!userInfo.isAdmin){
         navigate('/login')
       }
+
+      if(successCreate){
+        navigate(`/admin/product/${productCreate._id}/edit`)
+      }else{
+        dispatch(productListAction())
+      }
+      
         
         //console.log("In useEffect")
-    }, [dispatch,navigate,userInfo,successDelete]);
+    }, [dispatch,navigate,userInfo,successDelete,successCreate,productCreate]);
 
-    const createProductHandler = (product)=>{
-      console.log(product);
+    const createProductHandler = ( )=>{
+      dispatch(productCreateAction())
     }
 
     const deleteUserHandler = (id) => {
-      if(window.confirm("Are you sure!")){
-        // Delete Product
+      if(window.confirm("Are you sure!")){        
         dispatch(productDeleteAction(id))
       }
     }
   return ( 
-    <>    
+    <>
+    {loading && <Loader />}    
+    {error && <Message variant='danger'>{error}</Message>}    
+    {loadingCreate && <Loader />}  
+    {errorCreate && <Message variant='danger'>{errorDelete}</Message>} 
     {loadingDelete && <Loader />}  
-    {errorDelete && <Message variant='danger'>{errorDelete}</Message>}  
+    {errorDelete && <Message variant='danger'>{errorDelete}</Message>} 
       <ToastContainer
         position="top-center"
         autoClose={5000}
