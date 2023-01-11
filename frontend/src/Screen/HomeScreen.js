@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Product from "../component/Product.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +11,21 @@ const HomeScreen = () => {
   const { loading, products, error } = useSelector(
     (state) => state.productList
   );
-  useEffect(() => {
-    dispatch(productListAction());
-  }, [dispatch]);
+  const { keyword } = useSelector((state) => state.searchKeyword);
+  useEffect(()=>{
+    if (products && keyword) {
+      const filterProductList = products.filter((product) =>
+        product.name.match(new RegExp(keyword,'ig'))
+      );
+      dispatch({
+        type:'PRODUCT_LIST_SUCCESS',
+        payload:filterProductList
+      })
+    }else{
+      dispatch(productListAction());
+    }
+  },[keyword])
+
   return (
     <>
       <h1>Latest Products</h1>

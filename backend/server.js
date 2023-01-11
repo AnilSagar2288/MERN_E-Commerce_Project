@@ -1,5 +1,6 @@
 import path from 'path'
 import express from 'express'
+import morgan from 'morgan'
 import dotenv from 'dotenv'
 import cors from 'cors'
 // import products from './data/products.js'
@@ -16,6 +17,10 @@ dotenv.config();
 connectDB()
 
 app.use(cors())
+
+if(process.env.NODE_ENV ==="development"){
+    app.use(morgan('dev'))
+}
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
