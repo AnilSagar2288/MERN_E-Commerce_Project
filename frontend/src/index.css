@@ -21,3 +21,34 @@ h2{
   font-size:1.4rem;
   padding: 0.5rem 0;
 }
+
+
+.search-box-wrapper{
+  margin: 0px 10px;
+  flex:1;
+  position: relative;
+}
+
+.search-box-wrapper form input{
+  flex: 1;
+  border-radius: 1px 0 0 1px;
+  padding: 10px;
+  border:none;
+  outline: none;
+}
+
+.search-box-wrapper form button{
+  margin: 0px 10px;
+  border-radius: 0px 1px 1px 0px;
+  margin-left: 0px;
+  border: none;
+}
+
+.search-box-wrapper div{
+  flex:1;
+  position: absolute;
+  z-index: 999;
+  background-color: #ffffff;
+  width: 98.9%;
+  border-radius: 0px 1px 1px 0px;
+}

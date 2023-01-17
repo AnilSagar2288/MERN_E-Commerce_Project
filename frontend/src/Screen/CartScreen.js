@@ -49,7 +49,7 @@ const checkoutHandler = () =>{
                 <ListGroup.Item key={item.product}>
                   <Row>
                     <Col md={2}>
-                      <Image src={item.image} alt={item.name} fluid rounded/>
+                      <Image src={item.thumbnail} alt={item.name} fluid rounded/>
                     </Col>
                     <Col md={3}>
                       <Link to ={`/products/${item.product}`}>{item.name}</Link>

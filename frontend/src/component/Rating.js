@@ -59,7 +59,7 @@ const Rating = ({ value, text, color }) => {
           }
         ></i>
       </span>
-      <span style={{paddingLeft: "23%"}}>{text && text}</span>
+      <span style={{paddingLeft: "2%"}}>{text && text}</span>
     </div>
   );
 };

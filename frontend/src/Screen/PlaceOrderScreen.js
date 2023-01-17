@@ -9,22 +9,24 @@ import Message from '../component/Message'
 
 const PlaceOrderScreen = () => {
     const cart = useSelector(state=> state.cart)
+    console.log(cart)
     
     const dispatch = useDispatch()  
     const navigate = useNavigate()
     const createOrder = useSelector(state=> state.createOrder)
     const {success, error, order} = createOrder
 
-       // Calculate Price
+    // Calculate Price
     const addDecimals = (num) =>{        
         return (Math.round(num * 100) / 100).toFixed(2)
     }
     
-    cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc,item)=> acc + item.price * item.qty,0))
-    cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
+    const itemsPrice = addDecimals(cart.cartItems.reduce((acc,item)=> acc + Number(item.price) * Number(item.qty),0))
     
-    cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice)))
-    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
+    const shippingPrice = addDecimals(itemsPrice > 100 ? 0 : 100)
+    
+    const taxPrice = addDecimals((0.15 * itemsPrice))
+    const totalPrice = (Number(itemsPrice) + Number(shippingPrice) + Number(taxPrice)).toFixed(2)
 
 
     const placeOrderHandler = () =>{         
@@ -32,10 +34,10 @@ const PlaceOrderScreen = () => {
             orderItems:cart.cartItems,
             shippingAddress:cart.shippingAddress,
             paymentMethod:cart.paymentMethod,
-            itemsPrice:cart.itemsPrice,
-            taxPrice:cart.taxPrice,
-            shippingPrice: cart.shippingPrice,
-            totalPrice:cart.totalPrice
+            itemsPrice:itemsPrice,
+            taxPrice:taxPrice,
+            shippingPrice: shippingPrice,
+            totalPrice:totalPrice
         }))
     }
 
@@ -78,7 +80,7 @@ const PlaceOrderScreen = () => {
                                 <ListGroup.Item key={index}>
                                 <Row>
                                     <Col md={1}>
-                                        <Image src={item.image} alt={item.name} fluid rounded />
+                                        <Image src={item.thumbnail} alt={item.name} fluid rounded />
                                     </Col>
                                     <Col md={8} className='justify-content-center' style={{display:"flex"}}>
                                         <Link to={`/product/${item.product}`} >{item.name}</Link>                                        
@@ -101,25 +103,25 @@ const PlaceOrderScreen = () => {
                 <ListGroup.Item>
                     <Row>
                         <Col>Items price:</Col>
-                        <Col>${cart.itemsPrice}</Col>
+                        <Col>${itemsPrice}</Col>
                     </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Row>
                         <Col>Shipping Price:</Col>
-                        <Col>${cart.shippingPrice}</Col>
+                        <Col>${shippingPrice}</Col>
                     </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Row>
                         <Col>Tax Price:</Col>
-                        <Col>${cart.taxPrice}</Col>
+                        <Col>${taxPrice}</Col>
                     </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Row>
                         <Col><strong>Total Price:</strong></Col>
-                        <Col><strong>${cart.totalPrice}</strong></Col>
+                        <Col><strong>${totalPrice}</strong></Col>
                     </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
