@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { logout } from "../action/userAction";
 import SearchBox from "./SearchBox";
 
+
 const Header = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -17,11 +18,9 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          <Nav>
             <Link to="/">
-              <Navbar.Brand>ProShop </Navbar.Brand>
+              <Navbar.Brand><img src='/images/pngegg.png' style={{width:"80px",height:"80px"}} alt="Logo" /> </Navbar.Brand>
             </Link>
-          </Nav>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBox />
@@ -31,7 +30,7 @@ const Header = () => {
                 <i
                   className="fas fa-user"
                   style={{ marginLeft: "10px", color: "#ffffff" }}
-                />
+                />&nbsp;
                 <NavDropdown
                   title={userInfo.name}
                   id="usermenu"
@@ -58,7 +57,7 @@ const Header = () => {
                     textDecoration: "none",
                   }}
                 >
-                  <i className="fas fa-user" /> Sign In
+                  <i className="fas fa-user" />&nbsp; Sign In
                 </Link>
               </Nav>
             )}
@@ -67,7 +66,7 @@ const Header = () => {
                 <i
                   className="fas fa-user"
                   style={{ marginLeft: "10px", color: "#ffffff" }}
-                />
+                />&nbsp;
                 <NavDropdown
                   title="Admin"
                   id="adminmenu"
@@ -96,7 +95,7 @@ const Header = () => {
                 textDecoration: "none",
               }}
             >
-              <i className="fas fa-shopping-cart" />
+              <i className="fas fa-shopping-cart" />&nbsp;
               Cart
             </NavLink>
           </Navbar.Collapse>

@@ -1,6 +1,6 @@
 a{
   color: #ffffff;
-   text-decoration: none
+   text-decoration: none !important;
 }
 
 main{
@@ -51,4 +51,9 @@ h2{
   background-color: #ffffff;
   width: 98.9%;
   border-radius: 0px 1px 1px 0px;
+}
+
+.scearch-content-wrapper p {
+  padding: 0px 5px;
+  cursor: pointer;
 }

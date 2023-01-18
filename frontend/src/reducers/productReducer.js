@@ -2,7 +2,6 @@ import { PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PROD
 
 
 export const productSearchReducer =(state={keyword:''},action)=>{
-    
     switch (action.type) {
         case PRODUCT_SEARCH_REQUEST:
             return {keyword: action.payload}          

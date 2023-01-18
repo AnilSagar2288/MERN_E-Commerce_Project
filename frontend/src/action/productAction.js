@@ -159,6 +159,5 @@ export const productCreateReviewAction = (productId, reviews) => async(dispatch,
 
 export const productSearchKeword = (keyword) => async(dispatch)=>{
     dispatch({type:PRODUCT_SEARCH_REQUEST, payload:keyword})
-    
 }
 
