@@ -7,6 +7,7 @@ import Loader from "../component/Loader.js";
 import Message from "../component/Message.js";
 import Product from "../component/Product.js";
 import ProductSlider from "../component/ProductSlider.js";
+import Meta from "../component/Meta.js";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <Meta />
       {loading ? (
         <Loader />
       ) : error ? (

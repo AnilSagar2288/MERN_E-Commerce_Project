@@ -4,6 +4,7 @@ import { Row, Col, ListGroup, Card, Button, Form } from "react-bootstrap";
 import Rating from "../component/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../component/Message.js";
+import Meta from "../component/Meta.js";
 import Loader from "../component/Loader.js";
 import {
   productDetailsAction,
@@ -68,6 +69,7 @@ const ProductScreen = () => {
 
   return (
     <>
+    
       <Link to="/" className="btn btn-dark my-3">
         Go Back
       </Link>
@@ -77,6 +79,7 @@ const ProductScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+        <Meta title={product.name}/>
           <Row>
             {product.image && product.image.length > 0 ? (
               <Col md={1}>
