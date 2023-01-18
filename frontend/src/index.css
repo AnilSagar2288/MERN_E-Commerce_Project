@@ -57,3 +57,6 @@ h2{
   padding: 0px 5px;
   cursor: pointer;
 }
+.navbar{
+  padding: 0 !important;
+}
