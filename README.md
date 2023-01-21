@@ -39,4 +39,29 @@ User can rate the product after login only one time for one product
 ![007](https://user-images.githubusercontent.com/119804168/213882920-752c3b80-7e2b-4c16-9414-9e0d3af21de7.png)
 
 # Payment Screen
+
 ![008](https://user-images.githubusercontent.com/119804168/213882923-c4253ad2-9bf4-45ae-a825-38c23f7400fe.png)
+
+# Place Order Screen
+
+![009](https://user-images.githubusercontent.com/119804168/213882924-86281663-38fe-455e-b285-8347e1c3675d.png)
+
+# Order Details Screen
+
+![010](https://user-images.githubusercontent.com/119804168/213882925-b3c7bebd-6bd2-4c7e-99ba-71aa25b57134.png)
+
+# User Profile Screen
+
+![011](https://user-images.githubusercontent.com/119804168/213882927-70e06dd6-107e-4ee1-a03b-e7fb876a5a18.png)
+
+# Product Create, Edit and Delete Screen
+
+This option can access by admin 
+
+![012](https://user-images.githubusercontent.com/119804168/213882930-7bdbd074-8ac3-443d-a3e3-a00806e5e422.png)
+
+# All Order Details
+
+This option is also can access by admin
+
+![013](https://user-images.githubusercontent.com/119804168/213882931-07a078e0-1567-40bb-8965-827ffe88968e.png)
