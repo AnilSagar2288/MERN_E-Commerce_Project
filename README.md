@@ -69,3 +69,10 @@ This option can access by admin
 This option is also can access by admin
 
 ![013](https://user-images.githubusercontent.com/119804168/213882931-07a078e0-1567-40bb-8965-827ffe88968e.png)
+
+# Installation Process
+
+1. npm i
+2. cd .\frontend\
+3. npm i                          // this one is for frontend node_module
+4. npm run dev
